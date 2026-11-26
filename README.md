@@ -72,9 +72,7 @@ python3 -m venv venv
 
 ```bash
 mkdir -p build
-./.venv/Scripts/python.exe -m PyInstaller --noconfirm --onefile --windowed \
-  --name MouseActivity --icon "$(pwd -W)/assets/MouseActivity.ico" \
-  --distpath dist --workpath build --specpath build MouseActivity.py
+./.venv/Scripts/python.exe -m PyInstaller --noconfirm --onefile --windowed --name MouseActivity --icon "assets/MouseActivity.ico" --distpath dist --workpath build --specpath build MouseActivity.py
 ```
 
 PyInstaller создаст один файл `dist/MouseActivity.exe` со встроенным значком. Готовый EXE запускается без установленного Python.
