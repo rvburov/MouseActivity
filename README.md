@@ -8,7 +8,12 @@
 
 ## Быстрый запуск
 
-1. Откройте `dist\MouseActivity.exe`. Если у вас только исходники, сначала [соберите EXE](#сборка-exe).
+1. Запустите приложение из папки проекта в **Git Bash**. Если у вас только исходники, сначала [соберите EXE](#сборка-exe).
+
+   ```bash
+   ./dist/MouseActivity.exe
+   ```
+
 2. Включите **«Движение по таймеру»**. По умолчанию курсор сдвигается на **20 пикселей** каждые **15 минут**.
 3. Проверьте время следующего движения под заголовком окна. Приложение продолжит работать после закрытия окна.
 
@@ -29,18 +34,23 @@
 
 ## Сборка EXE
 
-Для сборки нужен **64-разрядный Python 3.12** на Windows. В PowerShell выполните:
+Для сборки нужен **64-разрядный Python 3.12** на Windows. Откройте **Git Bash** и выполните команды.
 
-```powershell
+```bash
 git clone https://github.com/rvburov/MouseActivity.git
 cd MouseActivity
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\build.ps1
+py -3.12 -m venv .venv
+./.venv/Scripts/python.exe -m pip install -r requirements.txt
+mkdir -p build
+./.venv/Scripts/python.exe -m PyInstaller --noconfirm --onefile --windowed \
+  --name MouseActivity --icon "$(pwd -W)/assets/MouseActivity.ico" \
+  --distpath dist --workpath build --specpath build MouseActivity.py
 ```
 
-При первом запуске с Python из нестандартной папки передайте путь явно:
+Если команда `py` недоступна, создайте окружение через полный путь к установленному Python и продолжите со строки установки зависимостей.
 
-```powershell
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\build.ps1 -PythonPath 'C:\path\to\python.exe'
+```bash
+"/c/путь/к/python.exe" -m venv .venv
 ```
 
-Скрипт создаёт виртуальное окружение `.venv`, устанавливает зависимости из `requirements.txt` и собирает через PyInstaller один файл `dist\MouseActivity.exe` со встроенным значком. Готовый EXE запускается без установленного Python.
+PyInstaller создаст один файл `dist/MouseActivity.exe` со встроенным значком. Готовый EXE запускается без установленного Python.
