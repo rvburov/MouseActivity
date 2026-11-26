@@ -39,13 +39,13 @@
 ```bash
 git clone https://github.com/rvburov/MouseActivity.git
 cd MouseActivity
-py -3.12 -m venv .venv
+python3 -m venv venv
 ```
 
 Если проект уже скачан, выполните команду создания `.venv` в его папке. Если команда `py` недоступна, укажите полный путь к `python.exe`.
 
 ```bash
-"/c/путь/к/python.exe" -m venv .venv
+"/c/путь/к/python.exe" -m venv venv
 ```
 
 Установите зависимости проекта.
@@ -57,9 +57,7 @@ py -3.12 -m venv .venv
 Если PyPI недоступен, установите зависимости через зеркало TUNA. [Документация зеркала](https://mirrors.tuna.tsinghua.edu.cn/help/pypi/)
 
 ```bash
-./.venv/Scripts/python.exe -m pip install \
-  --index-url https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple \
-  -r requirements.txt
+./.venv/Scripts/python.exe -m pip install --index-url https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple -r requirements.txt
 ```
 
 Запустите программу интерпретатором из `.venv`. PyQt6 устанавливается в это окружение отдельно, поэтому установленный глобально PyQt5 можно оставить для других проектов.
